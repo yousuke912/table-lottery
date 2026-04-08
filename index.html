@@ -26,12 +26,12 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Serif JP',serif;backgrou
 .btn-apply{width:100%;height:48px;background:linear-gradient(135deg,#c9a84c,#8a6420);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:1.2rem;transition:opacity .2s;letter-spacing:.08em;font-family:inherit}
 .btn-apply:hover{opacity:.88}
 
-#main{height:100vh;display:grid;grid-template-rows:1fr auto;gap:0;padding:0;position:relative}
+#main{height:100vh;display:grid;grid-template-rows:auto 1fr;gap:0;padding:0;position:relative}
 
 #gear-btn{position:fixed;top:12px;right:12px;z-index:50;width:36px;height:36px;border-radius:50%;background:rgba(180,150,80,0.15);border:1px solid rgba(180,150,80,0.3);color:#8a6420;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
 #gear-btn:hover{background:rgba(180,150,80,0.28)}
 
-#img-area{width:100%;height:100%;background:#f0ebe0;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer;border-bottom:1px solid #e0d5c0;transition:background .2s;position:relative}
+#img-area{width:100%;height:100%;background:#f0ebe0;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer;border-top:1px solid #e0d5c0;transition:background .2s;position:relative}
 #img-area:hover{background:#e8e0d0}
 #img-area img{width:100%;height:100%;object-fit:contain;display:none;background:#f0ebe0}
 #img-ph{text-align:center;color:#c0b090;pointer-events:none}
@@ -39,8 +39,8 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Serif JP',serif;backgrou
 #img-ph p{font-size:0.8rem;letter-spacing:.04em}
 #file-in{display:none}
 
-#lottery{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px 12px;background:#fff;border-top:2px solid #d4b86a;position:relative}
-#lottery::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c9a84c,#f0d080,#c9a84c)}
+#lottery{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px 12px;background:#fff;border-bottom:2px solid #d4b86a;position:relative}
+#lottery::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c9a84c,#f0d080,#c9a84c)}
 
 .phase-hint{font-size:0.72rem;font-weight:700;color:#8a6420;background:#fdf5e0;border:1px solid #e8d5a8;border-radius:999px;padding:4px 16px;letter-spacing:.08em}
 
@@ -100,12 +100,6 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Serif JP',serif;backgrou
 <button id="gear-btn" onclick="openSettings()">⚙️</button>
 
 <div id="main">
-  <div id="img-area" onclick="document.getElementById('file-in').click()">
-    <input type="file" id="file-in" accept="image/*" onchange="loadImg(event)">
-    <div id="img-ph"><div class="ico">🖼️</div><p>クリックして画像をアップロード（16:9推奨）</p></div>
-    <img id="img-el" alt="">
-  </div>
-
   <div id="lottery">
     <div class="phase-hint" id="phaseHint">まず設定してください</div>
     <div class="cards">
@@ -119,6 +113,12 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Serif JP',serif;backgrou
     </div>
     <div class="remain" id="remainEl">—</div>
     <div class="hist" id="histEl"></div>
+  </div>
+
+  <div id="img-area" onclick="document.getElementById('file-in').click()">
+    <input type="file" id="file-in" accept="image/*" onchange="loadImg(event)">
+    <div id="img-ph"><div class="ico">🖼️</div><p>クリックして画像をアップロード（16:9推奨）</p></div>
+    <img id="img-el" alt="">
   </div>
 </div>
 
