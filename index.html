@@ -163,8 +163,8 @@ function handleStart(){
 }
 
 function handleStop(){
-  if(phase==='both-spin') stopTable();
-  else if(phase==='seat-spin') stopSeat();
+  if(phase==='both-spin') stopSeat();
+  else if(phase==='table-spin') stopTable();
 }
 
 function startBothSpin(){
@@ -180,21 +180,21 @@ function startBothSpin(){
   updateUI();
 }
 
+function stopSeat(){
+  clearTimeout(sTimer);
+  document.getElementById('sVal').classList.remove('spin');
+  document.getElementById('cardS').className='card fixed';
+  phase='table-spin';
+  updateUI();
+}
+
 function stopTable(){
   clearTimeout(tTimer);
+  if(drumAudio){drumAudio.pause();drumAudio.currentTime=0}
   document.getElementById('tVal').classList.remove('spin');
   document.getElementById('cardT').className='card fixed';
   const picked=parseInt(document.getElementById('tVal').textContent);
   if(!isNaN(picked)&&remaining.includes(picked)){remaining=remaining.filter(n=>n!==picked)}
-  phase='seat-spin';
-  updateUI();
-}
-
-function stopSeat(){
-  clearTimeout(sTimer);
-  if(drumAudio){drumAudio.pause();drumAudio.currentTime=0}
-  document.getElementById('sVal').classList.remove('spin');
-  document.getElementById('cardS').className='card fixed';
   const t=document.getElementById('tVal').textContent;
   const s=document.getElementById('sVal').textContent;
   history.unshift({t,s});
@@ -212,11 +212,11 @@ function updateUI(){
     h.textContent='スタートを押してください';
     sb.textContent='▶ スタート';sb.disabled=false;sp.disabled=true;
   }else if(phase==='both-spin'){
-    h.textContent='ストップ → テーブルが決まります';
-    sb.disabled=true;sp.disabled=false;sp.textContent='⏸ ストップ（テーブル）';
-  }else if(phase==='seat-spin'){
-    h.textContent='もう一度ストップ → 座席が決まります';
+    h.textContent='ストップ → 座席が決まります';
     sb.disabled=true;sp.disabled=false;sp.textContent='⏸ ストップ（座席）';
+  }else if(phase==='table-spin'){
+    h.textContent='もう一度ストップ → テーブルが決まります';
+    sb.disabled=true;sp.disabled=false;sp.textContent='⏸ ストップ（テーブル）';
   }else if(phase==='done'){
     h.textContent='決定！次の人はスタートを押してください';
     sb.textContent='▶ 次の人';sb.disabled=false;sp.disabled=true;
