@@ -25,6 +25,9 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Serif JP',serif;backgrou
 .exc-tag{font-size:0.72rem;padding:2px 10px;border-radius:999px;background:#fdf0e0;color:#b8953a;font-weight:700;border:1px solid #e8d5a8}
 .btn-apply{width:100%;height:48px;background:linear-gradient(135deg,#c9a84c,#8a6420);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:1.2rem;transition:opacity .2s;letter-spacing:.08em;font-family:inherit}
 .btn-apply:hover{opacity:.88}
+.btn-img{height:40px;padding:0 16px;background:#fff;border:1px solid #d4c9b0;border-radius:8px;font-size:0.9rem;cursor:pointer;font-family:inherit;color:#8a6420;font-weight:700;transition:border-color .2s}
+.btn-img:hover{border-color:#b8953a}
+.btn-img.done{background:#fdf5e0;border-color:#d4b86a}
 
 #main{height:100vh;display:grid;grid-template-rows:auto 1fr;gap:0;padding:0;position:relative}
 
@@ -77,9 +80,14 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Serif JP',serif;backgrou
 
 <div id="settings-overlay">
   <div class="s-modal">
-    <h2>⚙️ テーブル設定</h2>
+    <h2>⚙️ 設定</h2>
     <div class="field">
-      <label>テーブル番号の範囲</label>
+      <label>① お知らせ画像</label>
+      <button type="button" class="btn-img" onclick="document.getElementById('file-in').click()">🖼️ 画像を選ぶ</button>
+      <div class="hint" id="imgStatus">未設定（画面下のエリアからでも変更できます）</div>
+    </div>
+    <div class="field">
+      <label>② テーブル番号の範囲</label>
       <div class="ri">
         <input type="number" id="from" value="1" min="1" max="999">
         <span style="color:#888">〜</span>
@@ -88,7 +96,7 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Serif JP',serif;backgrou
       </div>
     </div>
     <div class="field">
-      <label>除外する番号（カンマ区切り）</label>
+      <label>③ 除外する番号（カンマ区切り）</label>
       <input type="text" id="exc" placeholder="例：55, 56, 30">
       <div class="hint">入力した番号は抽選から除外されます</div>
       <div class="exc-tags" id="excTags"></div>
@@ -263,6 +271,8 @@ function loadImg(e){
     document.getElementById('img-el').src=ev.target.result;
     document.getElementById('img-el').style.display='block';
     document.getElementById('img-ph').style.display='none';
+    const st=document.getElementById('imgStatus');if(st)st.textContent='設定済み ✓';
+    const ib=document.querySelector('.btn-img');if(ib){ib.classList.add('done');ib.textContent='🖼️ 画像を変更';}
   };
   r.readAsDataURL(f);
 }
