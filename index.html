@@ -29,7 +29,7 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Serif JP',serif;backgrou
 .btn-img:hover{border-color:#b8953a}
 .btn-img.done{background:#fdf5e0;border-color:#d4b86a}
 
-#main{height:100vh;display:grid;grid-template-rows:auto 1fr;gap:0;padding:0;position:relative}
+#main{height:100vh;display:grid;grid-template-rows:1fr 50vh;gap:0;padding:0;position:relative}
 
 #gear-btn{position:fixed;top:12px;right:12px;z-index:50;width:36px;height:36px;border-radius:50%;background:rgba(180,150,80,0.15);border:1px solid rgba(180,150,80,0.3);color:#8a6420;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
 #gear-btn:hover{background:rgba(180,150,80,0.28)}
@@ -42,7 +42,7 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Serif JP',serif;backgrou
 #img-ph p{font-size:0.8rem;letter-spacing:.04em}
 #file-in{display:none}
 
-#lottery{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px 12px;background:#fff;border-bottom:2px solid #d4b86a;position:relative}
+#lottery{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px 12px;background:#fff;border-bottom:2px solid #d4b86a;position:relative;min-height:0;overflow:hidden}
 #lottery::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#c9a84c,#f0d080,#c9a84c)}
 
 .phase-hint{font-size:0.72rem;font-weight:700;color:#8a6420;background:#fdf5e0;border:1px solid #e8d5a8;border-radius:999px;padding:4px 16px;letter-spacing:.08em}
